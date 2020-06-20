@@ -2,7 +2,6 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
 
-// Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   timeout: 5000
