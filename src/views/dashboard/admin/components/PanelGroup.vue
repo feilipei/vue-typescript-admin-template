@@ -1,14 +1,18 @@
 <template>
+  <!-- Layout 布局 -->
   <el-row
     :gutter="40"
     class="panel-group"
   >
+    <!-- gutter列间隔为40 -->
+    <!-- 响应式布局 -->
     <el-col
       :xs="12"
       :sm="12"
       :lg="6"
       class="card-panel-col"
     >
+      <!-- @click原生点击事件触发本组件监听器的handleSetLineChartData方法，并传入参数值newVisitis -->
       <div
         class="card-panel"
         @click="handleSetLineChartData('newVisitis')"
@@ -133,7 +137,11 @@ import CountTo from 'vue-count-to'
   }
 })
 export default class extends Vue {
+  // 方法用于事件绑定
   private handleSetLineChartData(type: string) {
+    // 子组件可以使用 $emit 触发父组件的自定义事件。
+    // 第一个参数组件自定义事件，第二个参数传给监听器回调(子传父)，子组件数据type传递给父组件。
+    // 触发当前实例上的事件handleSetLineChartData。附加参数都会传给监听器回调。
     this.$emit('handleSetLineChartData', type)
   }
 }
@@ -141,22 +149,24 @@ export default class extends Vue {
 
 <style lang="scss" scoped>
 .panel-group {
-  margin-top: 18px;
-
+  border: 1px solid rgb(207, 17, 17); //边框
+  margin-top: 18px; //外边距
+  // background-color: #34bfa3;
   .card-panel-col {
     margin-bottom: 32px;
   }
 
   .card-panel {
-    height: 108px;
-    cursor: pointer;
-    font-size: 12px;
+    // border: 5px solid rgb(17, 207, 134); //边框
+    height: 108px;  //元素的高度，Dimension
+    cursor: pointer; //定义鼠标指针放在一个元素边界范围内时的光标形状
+    font-size: 12px; //字体大小
     position: relative;
-    overflow: hidden;
-    color: #666;
+    overflow: hidden; //内容溢出一个元素框，则内容被修剪
+    color: #666; //文本颜色
     background: #fff;
-    box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
-    border-color: rgba(0, 0, 0, .05);
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, .05); //下拉阴影
+    border-color: rgba(0, 0, 0, .05); //边框颜色单独使用不起周一，需要先设置边框样式
 
     &:hover {
       .card-panel-icon-wrapper {

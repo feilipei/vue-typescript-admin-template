@@ -3,13 +3,15 @@ import { getSidebarStatus, getSize, setSidebarStatus, setLanguage, setSize } fro
 import { getLocale } from '@/lang'
 import store from '@/store'
 
+// 枚举使用 enum 关键字来定义：设备类型
 export enum DeviceType {
   Mobile,
   Desktop,
 }
 
+// 接口：应用状态
 export interface IAppState {
-  device: DeviceType
+  device: DeviceType // 设备类型
   sidebar: {
     opened: boolean
     withoutAnimation: boolean
@@ -20,7 +22,8 @@ export interface IAppState {
 
 @Module({ dynamic: true, store, name: 'app' })
 class App extends VuexModule implements IAppState {
-  public sidebar = {
+  // 1 state
+  public sidebar = { // 侧边栏
     opened: getSidebarStatus() !== 'closed',
     withoutAnimation: false
   }
@@ -28,6 +31,7 @@ class App extends VuexModule implements IAppState {
   public language = getLocale()
   public size = getSize() || 'medium'
 
+  // 2 Mutation
   @Mutation
   private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
     this.sidebar.opened = !this.sidebar.opened
@@ -63,6 +67,7 @@ class App extends VuexModule implements IAppState {
     setSize(this.size)
   }
 
+  // 3 action
   @Action
   public ToggleSideBar(withoutAnimation: boolean) {
     this.TOGGLE_SIDEBAR(withoutAnimation)

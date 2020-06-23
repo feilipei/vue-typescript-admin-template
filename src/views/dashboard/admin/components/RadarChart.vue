@@ -17,6 +17,7 @@ const animationDuration = 3000
   name: 'RadarChart'
 })
 export default class extends mixins(ResizeMixin) {
+  // @Prop 装饰器是用以接收来自父组件的数据(props)，!表示确定变量有值。
   @Prop({ default: 'chart' }) private className!: string
   @Prop({ default: '100%' }) private width!: string
   @Prop({ default: '300px' }) private height!: string
@@ -73,7 +74,7 @@ export default class extends mixins(ResizeMixin) {
         data: ['Allocated Budget', 'Expected Spending', 'Actual Spending']
       },
       series: [{
-        type: 'radar',
+        type: 'radar', // 雷达图
         symbolSize: 0,
         areaStyle: {
           shadowBlur: 13,
@@ -82,7 +83,7 @@ export default class extends mixins(ResizeMixin) {
           shadowOffsetY: 10,
           opacity: 1
         },
-        data: [
+        data: [ // 数据数组
           {
             value: [5000, 7000, 12000, 11000, 15000, 14000],
             name: 'Allocated Budget'

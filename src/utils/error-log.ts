@@ -14,6 +14,7 @@ const checkNeed = () => {
 }
 
 if (checkNeed()) {
+  // 指定组件的渲染和观察期间未捕获错误的处理函数。
   Vue.config.errorHandler = function(err, vm, info) {
     ErrorLogModule.AddErrorLog({
       err,

@@ -10,7 +10,10 @@
           v-for="item in roles"
           :key="item"
           class="info-roles"
-        >{{ item }}</span>
+        >
+          <!-- HTML <span> 元素是内联元素，可用作文本的容器，内联元素在显示时通常不会以新行开始。 -->
+          {{ item }}
+        </span>
       </pan-thumb>
       <github-corner style="position: absolute; top: 0px; border: 0; right: 0;" />
       <div class="info-container">

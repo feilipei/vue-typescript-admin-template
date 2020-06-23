@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <aside>
+      <!-- <aside> 标签是 HTML5 的新标签。 -->
       {{ $t('guide.description') }}
       <a
         href="https://github.com/kamranahmedse/driver.js"

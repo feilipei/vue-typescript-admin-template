@@ -1,5 +1,11 @@
 <template>
   <div class="upload-container">
+    <!-- 通过点击或者拖拽上传文件：拖拽上传 -->
+    <!-- data上传时附带的额外参数 -->
+    <!-- multiple是否支持多选文件 -->
+    <!-- show-file-list是否显示已上传文件列表 -->
+    <!-- on-success文件上传成功时的钩子:函数 -->
+    <!-- action必选参数，上传的地址 post请求URL-->
     <el-upload
       :data="dataObj"
       :multiple="false"
@@ -9,11 +15,14 @@
       drag
       action="https://httpbin.org/post"
     >
+      <!-- <i> 标签呈现斜体的文本 -->
       <i class="el-icon-upload" />
       <div class="el-upload__text">
         将文件拖到此处，或<em>点击上传</em>
       </div>
     </el-upload>
+
+    <!-- 文件图片预览 -->
     <div class="image-preview image-app-preview">
       <div
         v-show="imageUrl.length>1"

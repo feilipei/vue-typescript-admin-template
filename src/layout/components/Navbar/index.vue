@@ -85,7 +85,7 @@ import Screenfull from '@/components/Screenfull/index.vue'
 import SizeSelect from '@/components/SizeSelect/index.vue'
 
 @Component({
-  name: 'Navbar',
+  name: 'Navbar', // 导航栏
   components: {
     Breadcrumb,
     ErrorLog,

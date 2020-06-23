@@ -1,5 +1,6 @@
 <template>
   <div class="components-container">
+    <!-- <aside> 标签定义 <article> 标签外的内容，aside 的内容应该与附近的内容相关。 -->
     <aside>
       This is based on
       <a

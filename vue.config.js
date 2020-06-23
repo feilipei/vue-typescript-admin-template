@@ -8,6 +8,9 @@ const mockServerPort = 9528 // TODO: get this variable from setting.ts
 const name = 'Vue Typescript Admin' // TODO: get this variable from setting.ts
 
 module.exports = {
+  // 在node中，有全局变量process表示的是当前的node进程。process.env包含着关于系统环境的信息。
+  // 但是process.env中并不存在NODE_ENV这个东西。NODE_ENV是用户一个自定义的变量
+  // 非生产环境下基本路径publicPath的值为'/'
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,

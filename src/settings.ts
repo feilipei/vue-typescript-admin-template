@@ -19,7 +19,7 @@ const settings: ISettings = {
   showSidebarLogo: false,
   errorLog: ['production'],
   sidebarTextTheme: true,
-  devServerPort: 9527,
+  devServerPort: 9527, // 开发环境端口号
   mockServerPort: 9528
 }
 

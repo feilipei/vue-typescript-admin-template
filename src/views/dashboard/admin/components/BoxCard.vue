@@ -1,4 +1,5 @@
 <template>
+  <!-- 将信息聚合在卡片容器中展示。 -->
   <el-card
     class="box-card-component"
     style="margin-left:8px;"

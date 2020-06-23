@@ -38,12 +38,13 @@ import variables from '@/styles/_variables.scss'
 
 @Component({
   name: 'SideBar',
-  components: {
+  components: { // 子组件
     SidebarItem,
     SidebarLogo
   }
 })
 export default class extends Vue {
+  // 计算属性computed
   get sidebar() {
     return AppModule.sidebar
   }

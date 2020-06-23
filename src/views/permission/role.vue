@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <!-- Button 按钮 -->
     <el-button
       type="primary"
       @click="handleCreateRole"
@@ -7,6 +8,7 @@
       {{ $t('permission.createRole') }}
     </el-button>
 
+    <!-- Table 表格 -->
     <el-table
       :data="rolesList"
       style="width: 100%;margin-top:30px;"
@@ -43,6 +45,7 @@
         label="Operations"
       >
         <template slot-scope="scope">
+          <!-- 编辑按钮 -->
           <el-button
             type="primary"
             size="small"
@@ -50,6 +53,7 @@
           >
             {{ $t('permission.editPermission') }}
           </el-button>
+          <!-- 删除按钮 -->
           <el-button
             type="danger"
             size="small"
@@ -61,10 +65,12 @@
       </el-table-column>
     </el-table>
 
+    <!-- Dialog 对话框 -->
     <el-dialog
       :visible.sync="dialogVisible"
       :title="dialogType==='edit'?'Edit Role':'New Role'"
     >
+      <!-- Form 表单 -->
       <el-form
         :model="role"
         label-width="80px"

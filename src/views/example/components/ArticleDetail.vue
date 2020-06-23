@@ -31,6 +31,7 @@
       </sticky>
 
       <div class="createPost-main-container">
+        <!-- 1 -->
         <el-row>
           <warning />
 
@@ -111,6 +112,8 @@
           </el-col>
         </el-row>
 
+        <!-- 2 -->
+        <!-- label标签文本:Summary -->
         <el-form-item
           style="margin-bottom: 40px;"
           label-width="70px"
@@ -130,6 +133,7 @@
           >{{ abstractContentLength }}words</span>
         </el-form-item>
 
+        <!-- 3 -->
         <el-form-item
           prop="content"
           style="margin-bottom: 30px;"
@@ -142,6 +146,7 @@
           />
         </el-form-item>
 
+        <!-- 4 -->
         <el-form-item
           prop="imageURL"
           style="margin-bottom: 30px;"
@@ -176,8 +181,8 @@ import { Form } from 'element-ui'
     SourceUrlDropdown,
     MaterialInput,
     Sticky,
-    Tinymce,
-    UploadImage,
+    Tinymce, // 编辑
+    UploadImage, // 文件上传
     Warning
   }
 })

@@ -7,13 +7,16 @@
       >Add and use
       </a>
     </aside>
+    <!-- Tabs 标签选项卡：分隔内容上有关联但属于不同类别的数据集合。 -->
     <el-tabs type="border-card">
       <el-tab-pane label="Icons">
+        <!-- for循环 -->
         <div
           v-for="item of svgIcons"
           :key="item"
           @click="handleClipboard(generateSvgIconCode(item),$event)"
         >
+          <!-- Tooltip 文字提示：常用于展示鼠标 hover 时的提示信息。 -->
           <el-tooltip placement="top">
             <div slot="content">
               {{ generateSvgIconCode(item) }}
