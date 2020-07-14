@@ -1,5 +1,5 @@
 import Vue, { DirectiveOptions } from 'vue'
-
+// 入口文件 加载组件 初始化等
 import 'normalize.css'
 // Element UI 是一套采用 Vue 2.0 作为基础框架实现的组件库
 import ElementUI from 'element-ui'
@@ -60,7 +60,7 @@ Vue.config.productionTip = false
 // 每个Vue应用程序都通过使用以下函数创建一个新的Vue实例开始。
 // 一个Vue应用程序由一个创建的根Vue实例组成new Vue，可选地组织成一个嵌套的可重用组件树
 new Vue({
-  router, // 相当于router：router,将路由对象传递给Vue的实例
+  router, // 相当于router：router,把路由对象router实例注入到 vue 根实例中
   store, // 在vue实例全局引入store对象
   i18n,
   render: (h) => h(App) // 等价于components: { App }  vue1.0的写法

@@ -9,7 +9,7 @@ interface ISettings {
   devServerPort: number // Port number for webpack-dev-server
   mockServerPort: number // Port number for mock server
 }
-
+// 设置文件
 // You can customize below settings :)
 const settings: ISettings = {
   title: 'Vue Typescript Admin',

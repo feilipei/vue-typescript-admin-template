@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-
+// PWA（ 全称：Progressive Web App ）也就是说这是个渐进式的网页应用程序
 @Component({
   name: 'ServiceWorkerUpdatePopup'
 })

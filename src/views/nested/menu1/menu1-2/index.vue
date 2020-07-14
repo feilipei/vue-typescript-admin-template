@@ -9,6 +9,7 @@
         name="fade-transform"
         mode="out-in"
       >
+        <!-- 对应的组件内容渲染到router-view中 -->
         <router-view />
       </transition>
     </el-alert>

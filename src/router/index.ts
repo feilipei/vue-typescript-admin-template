@@ -1,15 +1,24 @@
 import Vue from 'vue'
 import Router, { RouteConfig } from 'vue-router'
 
-/* Layout */
+// SPA(single page application):单一页面应用程序，只有一个完整的页面；它在加载页面时，不会加载整个页面，而是只更新某个指定的容器中内容。单页面应用(SPA)的核心之一是:更新视图而不重新请求页面
+// 路由，其实就是指向的意思
+// vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。
+
+/* Layout 布局组件*/
 import Layout from '@/layout/index.vue'
 
-/* Router modules */
+/* Router modules路由模块 */
+// 组件路由
 import componentsRouter from './modules/components'
+// 图表路由
 import chartsRouter from './modules/charts'
+// 表格路由
 import tableRouter from './modules/table'
+// 嵌入式路由
 import nestedRouter from './modules/nested'
 
+// 安装 Vue.js 路由插件
 Vue.use(Router)
 
 /*
@@ -36,12 +45,14 @@ Vue.use(Router)
 */
 
 /**
-  ConstantRoutes
+  ConstantRoutes 常量路由配置，定义了一组路由
   a base page that does not have permission requirements
   all roles can be accessed
 */
 export const constantRoutes: RouteConfig[] = [
+  // 一条路由定义是一个对象，至少由两个部分组成： path路径和component组件
   {
+    // 跳转
     path: '/redirect',
     component: Layout,
     meta: { hidden: true },
@@ -53,16 +64,19 @@ export const constantRoutes: RouteConfig[] = [
     ]
   },
   {
+    // 登录
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
     meta: { hidden: true }
   },
   {
+    // 授权跳转
     path: '/auth-redirect',
     component: () => import(/* webpackChunkName: "auth-redirect" */ '@/views/login/auth-redirect.vue'),
     meta: { hidden: true }
   },
   {
+    // 错误
     path: '/404',
     component: () => import(/* webpackChunkName: "404" */ '@/views/error-page/404.vue'),
     meta: { hidden: true }
@@ -73,11 +87,13 @@ export const constantRoutes: RouteConfig[] = [
     meta: { hidden: true }
   },
   {
+    // 项目根路径
     path: '/',
     component: Layout,
     redirect: '/dashboard',
     children: [
       {
+        // 首页
         path: 'dashboard',
         component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
         name: 'Dashboard',
@@ -102,6 +118,7 @@ export const constantRoutes: RouteConfig[] = [
   //   ]
   // },
   {
+    // 引导页
     path: '/guide',
     component: Layout,
     redirect: '/guide/index',
@@ -139,11 +156,12 @@ export const constantRoutes: RouteConfig[] = [
 ]
 
 /**
- * asyncRoutes
+ * asyncRoutes 异步路由配置
  * the routes that need to be dynamically loaded based on user roles
 */
 export const asyncRoutes: RouteConfig[] = [
   {
+    // 权限
     path: '/permission',
     component: Layout,
     redirect: '/permission/directive',
@@ -155,6 +173,7 @@ export const asyncRoutes: RouteConfig[] = [
     },
     children: [
       {
+        // 页面权限
         path: 'page',
         component: () => import(/* webpackChunkName: "permission-page" */ '@/views/permission/page.vue'),
         name: 'PagePermission',
@@ -164,6 +183,7 @@ export const asyncRoutes: RouteConfig[] = [
         }
       },
       {
+        // 指令权限
         path: 'directive',
         component: () => import(/* webpackChunkName: "permission-directive" */ '@/views/permission/directive.vue'),
         name: 'DirectivePermission',
@@ -173,6 +193,7 @@ export const asyncRoutes: RouteConfig[] = [
         }
       },
       {
+        // 角色权限
         path: 'role',
         component: () => import(/* webpackChunkName: "permission-role" */ '@/views/permission/role.vue'),
         name: 'RolePermission',
@@ -445,6 +466,7 @@ export const asyncRoutes: RouteConfig[] = [
   }
 ]
 
+// 创建路由，管理路由
 const createRouter = () => new Router({
   // mode: 'history',  // Disabled due to Github Pages doesn't support this, enable this if you need.
   scrollBehavior: (to, from, savedPosition) => {

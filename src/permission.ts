@@ -7,7 +7,7 @@ import { UserModule } from '@/store/modules/user'
 import { PermissionModule } from '@/store/modules/permission'
 import i18n from '@/lang' // Internationalization
 import settings from './settings'
-
+// 权限管理
 NProgress.configure({ showSpinner: false })
 
 const whiteList = ['/login', '/auth-redirect']

@@ -1,4 +1,5 @@
 module.exports = {
+  // jest 单元测试配置：是 Facebook 的一套开源的 JavaScript 测试框架
   moduleFileExtensions: [
     'js',
     'jsx',

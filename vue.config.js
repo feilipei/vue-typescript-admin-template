@@ -1,5 +1,5 @@
 const path = require('path')
-
+// vue-cli 可选的配置文件
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
 // For example, on Mac: sudo npm run / sudo yarn
@@ -8,11 +8,13 @@ const mockServerPort = 9528 // TODO: get this variable from setting.ts
 const name = 'Vue Typescript Admin' // TODO: get this variable from setting.ts
 
 module.exports = {
-  // 在node中，有全局变量process表示的是当前的node进程。process.env包含着关于系统环境的信息。
-  // 但是process.env中并不存在NODE_ENV这个东西。NODE_ENV是用户一个自定义的变量
-  // 非生产环境下基本路径publicPath的值为'/'
+  // 在node中全局变量process表示的是当前的node进程。process.env包含着关于系统环境的信息。
+  // 借助于 process.env.NODE_ENV 可以使我们区分开发环境， process.env.NODE_ENV 不是系统默认选项，是人为后续加入的一个自定义项。在webpack中它的用途是判断生产环境或开发环境的依据的。
+  // 基本路径：非生产环境下publicPath的值为根路径'/'
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-typescript-admin-template/' : '/',
+  // 是否在保存的时候使用 `eslint-loader` 进行检查。
   lintOnSave: process.env.NODE_ENV === 'development',
+  // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
   productionSourceMap: false,
   devServer: {
     port: devServerPort,
@@ -21,6 +23,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    // 如果前端应用和后端 API 服务器没有运行在同一个主机上，需要在开发环境下将 API 请求代理到 API 服务器。
     proxy: {
       // change xxx-api/login => /mock-api/v1/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
@@ -34,6 +37,7 @@ module.exports = {
       }
     }
   },
+  // 向 PWA 插件传递选项。
   pwa: {
     name: name,
     workboxPluginMode: 'InjectManifest',
@@ -41,6 +45,7 @@ module.exports = {
       swSrc: path.resolve(__dirname, 'src/pwa/service-worker.js')
     }
   },
+  // 这是一个不进行任何 schema 验证的对象，因此它可以用来传递任何第三方插件选项。
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
@@ -50,6 +55,7 @@ module.exports = {
       ]
     }
   },
+  // 是一个函数，会接收一个基于 webpack-chain 的 ChainableConfig 实例。允许对内部的 webpack 配置进行更细粒度的修改。
   chainWebpack(config) {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
