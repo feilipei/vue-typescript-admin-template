@@ -5,7 +5,7 @@ import Router, { RouteConfig } from 'vue-router'
 // 路由，其实就是指向的意思
 // vue的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。
 
-/* Layout 布局组件*/
+/* Layout 布局组件 */
 import Layout from '@/layout/index.vue'
 
 /* Router modules路由模块 */

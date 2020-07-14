@@ -1,10 +1,11 @@
 <template>
   <div class="app-container">
-    <!-- 筛选器 -->
+    <!-- 筛选器: div块级元素通常会以新行来开始（和结束）。class 属性通常用于指向样式表的类 -->
     <div class="filter-container">
-      <!-- Input 为输入组件，它总会显示 Vue 绑定值。 -->
-      <!-- v-model绑定标题变量，用于用户输入值绑定到vue的data上 -->
-      <!-- placeholder输入框占位文本 -->
+      <!-- Input 为输入框组件，它总会显示 Vue 绑定的变量值。 -->
+      <!-- v-model绑定变量，用于用户输入值绑定到vue的data上 -->
+      <!-- placeholder输入框占位文本,提示信息作用 -->
+      <!-- style 属性规定元素的行内样式（inline style）。 -->
       <!-- v-on在监听键盘enter回车事件，如果用了封装组件比如element，使用按键修饰符需要加上.native -->
       <el-input
         v-model="listQuery.title"
@@ -13,7 +14,7 @@
         class="filter-item"
         @keyup.enter.native="handleFilter"
       />
-      <!-- Select 选择器，使用下拉菜单展示并选择内容。 -->
+      <!-- Select 选择器，当选项过多时使用下拉菜单展示并选择内容。 -->
       <!-- v-model的值为当前被选中的el-option的 value 属性值 -->
       <!-- clearable是否可以清空选项,默认为false -->
       <el-select
@@ -23,7 +24,9 @@
         style="width: 120px"
         class="filter-item"
       >
-        <!-- label选项的标签，若不设置则默认与 value 相同；value选项的值 -->
+        <!-- 循环使用 v-for 指令 -->
+        <!-- importanceOptions为数字数组，value为数组元素 -->
+        <!-- label选项的标签界面显示的文字，若不设置则默认与 value 相同 -->
         <el-option
           v-for="item in importanceOptions"
           :key="item"
@@ -41,6 +44,7 @@
         class="filter-item"
         style="width: 130px"
       >
+        <!-- calendarTypeOptions为对象数组 -->
         <el-option
           v-for="item in calendarTypeOptions"
           :key="item.key"
@@ -57,6 +61,7 @@
         class="filter-item"
         @change="handleFilter"
       >
+        <!-- sortOptions为对象数组 -->
         <el-option
           v-for="item in sortOptions"
           :key="item.key"
@@ -65,7 +70,8 @@
         />
       </el-select>
       <!-- Button 按钮，使用type、plain、round和circle属性来定义 Button 的样式。 -->
-      <!-- icon图标类名， v-waves为vue插件，点击水波样式 -->
+      <!-- type：按钮类型 -->
+      <!-- icon图标类名， v-waves为vue插件，点击按钮为水波样式 -->
       <el-button
         v-waves
         class="filter-item"
@@ -89,6 +95,7 @@
       <!-- Button 按钮，使用type、plain、round和circle属性来定义 Button 的样式。 -->
       <!-- icon图标类名， v-waves为vue插件，点击水波样式 ，loading是否加载中状态-->
       <!-- :属性绑定数据变量  @事件绑定方法 -->
+      <!-- loading：在按钮上显示加载状态 -->
       <el-button
         v-waves
         :loading="downloadLoading"
@@ -99,7 +106,7 @@
       >
         {{ $t('table.export') }}
       </el-button>
-      <!-- Checkbox 多选框 -->
+      <!-- Checkbox 多选框，一组备选项中进行多选 -->
       <!-- 在el-checkbox元素中定义v-model绑定变量，单一的checkbox中，默认绑定变量的值会是Boolean，选中为true。 -->
       <!-- 选中后表格会加一列，即表格列数tableKey加1 -->
       <el-checkbox
@@ -112,12 +119,11 @@
       </el-checkbox>
     </div>
 
-    <!-- Table 表格 -->
-
+    <!-- Table 表格，展示多条结构类似的数据，可对数据进行排序、筛选 -->
     <!-- key的作用让每个item有一个唯一的识别身份 -->
     <!-- 使用v-loading在接口为请求到数据之前，显示加载中直到请求到数据后消失。 -->
-    <!-- data显示的数据，fit列的宽度是否自撑开，highlight-current-row是否要高亮当前行 -->
-    <!-- sort-change当表格的排序条件发生变化的时候会触发该事件 -->
+    <!-- data显示的数据，绑定的list为对象数组，fit列的宽度是否自撑开，highlight-current-row是否要高亮当前行 -->
+    <!-- sort-change当表格的排序条件发生变化的时候会触发该事件sortChange,被l-table-column的sortable监听 -->
     <el-table
       :key="tableKey"
       v-loading="listLoading"
@@ -130,9 +136,9 @@
     >
       <!-- 1序号 -->
       <!-- label属性来定义表格的列名 -->
-      <!-- prop属性来对应对象中的键名即可填入数据 -->
+      <!-- prop对应列内容的字段名，属性来对应对象数组list中的键名即可填入数据 -->
       <!-- width属性来定义列宽 -->
-      <!-- sortable设置为 'custom'，则代表用户希望远程排序，需要监听Table 的sort-change 事件 -->
+      <!-- sortable实现以该列为基准的排序，设置为 'custom'，则代表用户希望远程排序，需要监听Table 的sort-change 事件 -->
       <!-- class-name列的 className -->
       <el-table-column
         :label="$t('table.id')"
@@ -142,7 +148,10 @@
         width="80"
         :class-name="getSortClass('id')"
       >
+        <!-- slot-scope是vue2.10新增的一个作用域插槽 -->
+        <!-- scope定义为插槽作用域的名字 -->
         <template slot-scope="scope">
+          <!-- scope.row是当前表格一行的所有数据 -->
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
@@ -153,6 +162,7 @@
         align="center"
       >
         <template slot-scope="scope">
+          <!-- Parse the timestamp to string调用功能函数parseTime -->
           <span>{{ scope.row.timestamp | parseTime }}</span>
         </template>
       </el-table-column>
@@ -161,8 +171,11 @@
         :label="$t('table.title')"
         min-width="150px"
       >
+        <!-- row等同于scope.row，{row}等同于scope -->
+        <!-- 通过slot-scope获取el-table定义的row -->
         <template slot-scope="{row}">
-          <!-- 点击标题文字更新内容 -->
+          <!-- link-type样式为超链接 -->
+          <!-- 点击标题文字事件更新内容 -->
           <span
             class="link-type"
             @click="handleUpdate(row)"
@@ -181,6 +194,7 @@
         width="180px"
         align="center"
       >
+        <!-- 与prop="author"等价 -->
         <template slot-scope="scope">
           <span>{{ scope.row.author }}</span>
         </template>
@@ -296,7 +310,7 @@
       </el-table-column>
     </el-table>
 
-    <!-- 分页组件 -->
+    <!-- 分页组件，total表示总条目数 -->
     <pagination
       v-show="total>0"
       :total="total"
@@ -305,8 +319,9 @@
       @pagination="getList"
     />
 
+    <!-- Dialog 对话框:在保留当前页面状态的情况下，告知用户并承载相关操作。 -->
     <!-- 当点击添加按钮或编辑按钮时，改变变量dialogFormVisible的值，弹出对话框 -->
-    <!-- title属性用于定义标题，它是可选的，默认值为空 -->
+    <!-- title属性用于定义对话框标题，它是可选的，默认值为空 -->
     <!-- visible属性，当为true时显示 Dialog。 -->
     <!-- Dialog 分为两个部分：body和footer -->
     <el-dialog
@@ -314,6 +329,7 @@
       :visible.sync="dialogFormVisible"
     >
       <!-- rules表单验证规则；label-position表单域标签的位置 -->
+      <!-- model:表单数据对象 -->
       <el-form
         ref="dataForm"
         :rules="rules"
@@ -322,9 +338,9 @@
         label-width="100px"
         style="width: 400px; margin-left:50px;"
       >
-        <!-- 1类型 -->
         <!-- label标签文本 -->
-        <!-- prop表单域 model 字段 -->
+        <!-- prop：表单域 model 字段 -->
+        <!-- 1类型 -->
         <el-form-item
           :label="$t('table.type')"
           prop="type"
@@ -420,6 +436,7 @@
       :visible.sync="dialogPageviewsVisible"
       title="Reading statistics"
     >
+      <!-- 表格，展示多条结构类似的数据，可对数据进行排序、筛选 -->
       <el-table
         :data="pageviewsData"
         border

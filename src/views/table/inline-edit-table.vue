@@ -1,5 +1,9 @@
 <template>
   <div class="app-container">
+    <!-- v-loading加载数据时显示动效。 -->
+    <!-- 当el-table元素中注入data（对象数组）后，在el-table-column中用prop属性来对应对象中的键名即可填入数据 -->
+    <!-- border是否带有纵向边框 -->
+    <!-- fit列的宽度是否自撑开 -->
     <el-table
       v-loading="listLoading"
       :data="list"

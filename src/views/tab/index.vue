@@ -52,6 +52,7 @@ export default class extends Vue {
 
   @Watch('activeName')
   private onActiveNameChange(value: string) {
+    // 实现路由跳转，this.$route.path当前路由对象的路径
     this.$router.push(`${this.$route.path}?tab=${value}`)
   }
 

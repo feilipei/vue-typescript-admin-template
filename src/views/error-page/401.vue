@@ -22,6 +22,7 @@
           <li>或者你可以去:</li>
           <li class="link-type">
             <!-- router-link定义页面中点击的部分，当用户点击标签时，会去寻找to属性，to 属性和js中配置的路径path 一一对应，从而找到了匹配的组件 -->
+            <!-- <router-link :to="..."> 等同于调用 router.push(...) -->
             <router-link to="/dashboard">
               回首页
             </router-link>
