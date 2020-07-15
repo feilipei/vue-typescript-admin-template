@@ -127,6 +127,8 @@
     <el-table
       :key="tableKey"
       v-loading="listLoading"
+      element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading"
       :data="list"
       border
       fit
@@ -184,6 +186,7 @@
           </span>
           <!-- Tag 标签用于标记和选择。 -->
           <el-tag>
+            <!-- 过滤器可以用在两个地方：双花括号插值和 v-bind 表达式 -->
             {{ row.type | typeFilter }}
           </el-tag>
         </template>
@@ -363,7 +366,10 @@
           :label="$t('table.date')"
           prop="timestamp"
         >
-          <!-- 日期时间选择器 -->
+          <!-- 日期时间选择器,type属性指定为日期时间选择器类型，绑定的为单一变量Date -->
+          <!-- 设置type为datetimerange即可选择日期和时间范围，则绑定的变量为Date数组 -->
+          <!-- range-separator选择范围时的分隔符 -->
+          <!-- value-format可选，绑定值的格式。不指定则绑定值为Date对象 -->
           <el-date-picker
             v-model="tempArticleData.timestamp"
             type="datetime"
@@ -501,7 +507,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce((acc: { [key: string]: s
     Pagination
   },
   filters: {
-    // 过滤器
+    // 过滤器，用于一些常见的文本格式化
     typeFilter: (type: string) => {
       return calendarTypeKeyValue[type]
     }
@@ -566,7 +572,7 @@ export default class extends Vue {
     // 用于在指定的毫秒数后调用函数或计算表达式。
     setTimeout(() => {
       this.listLoading = false
-    }, 0.5 * 1000)
+    }, 5 * 1000)
   }
 
   // 执行筛选查询

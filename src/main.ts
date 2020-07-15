@@ -1,5 +1,6 @@
 import Vue, { DirectiveOptions } from 'vue'
 // 入口文件 加载组件 初始化等
+// main.js是项目的入口文件，定义了vue实例，并引入根组件app.vue，将其挂载到public文件夹下index.html中id为‘app’的节点上
 import 'normalize.css'
 // Element UI 是一套采用 Vue 2.0 作为基础框架实现的组件库
 import ElementUI from 'element-ui'
@@ -22,6 +23,8 @@ import '@/pwa/register-service-worker'
 import * as directives from '@/directives'
 import * as filters from '@/filters'
 
+// 插件通常用来为 Vue 添加全局功能
+// 通过全局方法 Vue.use() 使用插件。它需要在你调用 new Vue() 启动应用之前完成
 // 安装 Vue.js 插件
 // 引入完整的 Element，全局配置对象，size 用于改变组件的默认尺寸，zIndex 设置弹框的初始 z-index（默认值：2000）
 Vue.use(ElementUI, {
@@ -35,7 +38,7 @@ Vue.use(SvgIcon, {
   defaultHeight: '1em'
 })
 
-// Register global directives 。
+// Register global directives 。注册全局自定义指令
 // Object.keys方法用来遍历对象的属性。参数是一个对象，返回一个数组.
 // forEach方法与map方法很相似，也是对数组的所有成员依次执行参数函数。但是forEach方法不返回值，只用来操作数据
 Object.keys(directives).forEach(key => {
@@ -51,8 +54,6 @@ Object.keys(filters).forEach(key => {
 
 // 全局配置：设置为 false 以阻止 vue 在启动时生成生产提示。
 Vue.config.productionTip = false
-
-// main.js是项目的入口文件，定义了vue实例，并引入根组件app.vue，将其挂载到public文件夹下index.html中id为‘app’的节点上
 // 1.入口文件是一个webpack概念；入口文件是webpack构建内部依赖图的起点。
 // 2.app.js是由webpack打包生成的输出文件。
 // 3.而将app.js挂载到index.html这一过程是由webpack的一个插件——html-webpack-plugin完成的。
