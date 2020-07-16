@@ -33,7 +33,7 @@ Vue.use(Router)
   meta: {
     roles: ['admin', 'editor']   will control the page roles (allow setting multiple roles)
     title: 'title'               the name showed in subMenu and breadcrumb (recommend set)
-    icon: 'svg-name'             the icon showed in the sidebar
+    icon: 'svg-name'             the icon showed in the sidebar 组件图标
     hidden: true                 if true, this route will not show in the sidebar (default is false)
     alwaysShow: true             if true, will always show the root menu (default is false)
                                  if false, hide the root menu when has less or equal than one children route
